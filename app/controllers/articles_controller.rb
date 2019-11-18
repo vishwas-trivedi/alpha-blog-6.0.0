@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    #render plain: params[:article].inspect
+    # Render plain: params[:article].inspect
     # White listing of parameters
     @article = Article.new(article_params)
     @article.save
