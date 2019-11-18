@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   root "pages#home"
   get "about", to: "pages#about"
 
-  # Create articles path
-  resource :articles
+  # Creating routes for article
+  resources :articles
 end
