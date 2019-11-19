@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  
   # Listing with index action
   def index
     @articles = Article.all
@@ -23,15 +25,12 @@ class ArticlesController < ApplicationController
 
   # Show action
   def show
-    @article = Article.find(params[:id])
   end
 
   def edit
-    @article = Article.find(params[:id])
   end
 
   def update
-    @article = Article.find(params[:id])
     if @article.update(article_params)
       flash[:notice] = "Article was usccessfully updated."
       redirect_to article_path(@article)
@@ -41,13 +40,17 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
     flash[:notice] = "Article was successfully deleted."
     redirect_to articles_path;
   end
 
   private
+    # Common method to find article with ID
+    def set_article
+      @article = Article.find(params[:id])
+    end
+
     # Whitelisting or strong parameters
     def article_params
       params.require(:article).permit(:title, :description)
