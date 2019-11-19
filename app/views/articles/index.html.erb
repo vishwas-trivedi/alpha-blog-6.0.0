@@ -1,5 +1,6 @@
 <h1>Complete list of articles</h1>
-<%= link_to 'Create New Article', new_article_path %>
+<%= link_to 'Home', root_path %> |
+<%= link_to 'Create', new_article_path %>
 <br/>
 <table>
   <tr>
@@ -12,7 +13,11 @@
   <% @articles.each do |article| %>
     <tr>
       <td><%= article.title %></td>
-      <td><%= article.description[0,30] + "..."%></td>
+      <% if article.description.length > 30 %>
+        <td><%= article.description[0,30] + "..." %></td>  
+      <% else %>
+        <td><%= article.description %></td>
+      <% end %>
       <td><%= link_to 'Show',  article_path(article) %></td>
       <td><%= link_to 'Edit',  edit_article_path(article) %></td>
     </tr>
