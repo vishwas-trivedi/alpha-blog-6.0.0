@@ -1,4 +1,10 @@
 class ArticlesController < ApplicationController
+  # Listing with index action
+  def index
+    @articles = Article.all
+  end
+
+
   # New action
   def new
     @article = Article.new
@@ -33,7 +39,6 @@ class ArticlesController < ApplicationController
     else
       render 'edit'
     end
-
   end
 
   private
